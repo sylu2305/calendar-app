@@ -17,7 +17,6 @@ This app supports custom events, recurring events, tooltips, dark/light themes, 
 - ✅ Add, update, and delete events
 - ✅ View in **monthly** or **weekly** layouts
 - ✅ Supports **recurring weekly events**
-- ✅ Events saved in **localStorage**
 - ✅ Loads initial events from `events.json`
 - ✅ Toggle between **dark** and **light** mode
 - ✅ Popup **reminder 1 minute before** an event
