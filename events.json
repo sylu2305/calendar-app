@@ -1,0 +1,43 @@
+[
+  {
+    "title": "New Year",
+    "date": "2025-01-01",
+    "time": "00:00",
+    "duration": "All Day",
+    "color": "#ff9800",
+    "allDay": true
+  },
+  {
+    "title": "Lunch with Steven",
+    "date": "2025-06-20",
+    "time": "12:00",
+    "duration": "1h",
+    "color": "#4caf50",
+    "static": true
+  },
+  {
+    "title": "Team Sync",
+    "date": "2025-06-20",
+    "time": "10:00",
+    "duration": "1h",
+    "color": "#2196f3",
+    "static": true
+  },
+  {
+    "title": "Team Standup",
+    "date": "2025-06-22",
+    "time": "09:30",
+    "duration": "30 mins",
+    "color": "#f44336",
+    "repeat": "weekly",
+    "static": true
+  },
+  {
+    "title": "Code Review",
+    "date": "2025-06-23",
+    "time": "14:00",
+    "duration": "1 hour",
+    "color": "#4caf50",
+    "static": true
+  }
+]
