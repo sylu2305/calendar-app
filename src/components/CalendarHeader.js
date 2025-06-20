@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/calendar.css";
 
 /**
- * 📅 CalendarHeader Component
+ * CalendarHeader Component
  * ---------------------------
  * Displays the current month and year, and provides
  * buttons to navigate between months or weeks.

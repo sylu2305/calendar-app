@@ -1,4 +1,4 @@
-/* 🌍 Global Reset */
+/* Global Reset */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -11,7 +11,7 @@ body.dark {
   color: #eee;
 }
 
-/* 🌟 Top Section: Title + Buttons */
+/*  Top Section: Title + Buttons */
 .calendar-header-top {
   display: flex;
   flex-direction: column;
@@ -67,7 +67,7 @@ body.dark {
   margin-top: 8px;
 }
 
-/* 📅 Calendar Header */
+/* Calendar Header */
 .calendar-header {
   display: flex;
   justify-content: space-between;
@@ -95,7 +95,7 @@ body.dark .calendar-header button {
   color: #90caf9;
 }
 
-/* 🗓️ Calendar Grid */
+/* Calendar Grid */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -123,7 +123,7 @@ body.dark .day-name {
   color: #eee;
 }
 
-/* 📆 Day Cell */
+/* Day Cell */
 .day-cell {
   padding: 12px;
   min-height: 120px;
@@ -157,7 +157,7 @@ body.dark .day-cell.empty {
   border-color: #333;
 }
 
-/* ☀️ Weekend + 🎉 Holiday */
+/* Weekend + Holiday */
 .day-cell.weekend {
   background-color: #f5f5f5;
 }
@@ -166,7 +166,7 @@ body.dark .day-cell.empty {
   border: 1px solid #fbcaca;
 }
 
-/* 📍 Day Header (Number + Badge) */
+/* Day Header (Number + Badge) */
 .day-header {
   display: flex;
   justify-content: space-between;
@@ -187,7 +187,7 @@ body.dark .day-number {
   border-radius: 10px;
 }
 
-/* 🏷️ Event Tag */
+/* Event Tag */
 .event {
   font-size: 0.8rem;
   background-color: var(--color, #9c27b0);
@@ -213,7 +213,7 @@ body.dark .event {
   opacity: 0.95;
 }
 
-/* 🛠 Tooltip */
+/*  Tooltip */
 .tooltip {
   position: relative;
   display: inline-block;
@@ -236,7 +236,7 @@ body.dark .event {
   visibility: visible;
 }
 
-/* 🔔 Alert Box */
+/* Alert Box */
 .alert-box {
   position: fixed;
   top: 10px;
@@ -251,7 +251,7 @@ body.dark .event {
   font-weight: bold;
 }
 
-/* 📦 Modal */
+/*  Modal */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -289,7 +289,7 @@ body.dark .modal {
   background-color: #357ab8;
 }
 
-/* 🎬 Modal animation */
+/* Modal animation */
 @keyframes fade-in {
   from {
     transform: scale(0.9);
@@ -301,7 +301,7 @@ body.dark .modal {
   }
 }
 
-/* 📱 Responsive */
+/* Responsive */
 .calendar-actions-vertical {
   display: flex;
   flex-direction: row;
