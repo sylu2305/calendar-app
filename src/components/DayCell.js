@@ -70,7 +70,7 @@ function DayCell({ day, events, isToday, onEventClick, onEventDrop }) {
               ev.stopPropagation(); // Prevent modal from closing if inside
               onEventClick(e); // Open modal for this event
             }}
-            style={{ "--color": e.color || "#9c27b0" }} // Custom color
+            style={{ "--color": e.color || "#9c27b0" }} // custom color
           >
             {/* Tooltip wrapper for event title */}
             <div className="tooltip">
