@@ -1,4 +1,4 @@
-/* 🌍 GLOBAL RESET */
+/* 🌍 Global Reset */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -6,14 +6,12 @@ body {
   color: #2c3e50;
   transition: background 0.5s ease, color 0.5s ease;
 }
-
-/* 🌑 Dark Mode Body Background */
 body.dark {
   background: linear-gradient(135deg, #1e1e2f, #151520);
   color: #eee;
 }
 
-/* 🌟 HEADER SECTION (TITLE + BUTTONS) */
+/* 🌟 Top Section: Title + Buttons */
 .calendar-header-top {
   display: flex;
   flex-direction: column;
@@ -36,7 +34,6 @@ body.dark {
   align-items: center;
   gap: 10px;
 }
-
 .calendar-icon {
   font-size: 2.2rem;
 }
@@ -48,7 +45,6 @@ body.dark {
   justify-content: center;
 }
 
-/* 🔘 BUTTON STYLING */
 .action-btn {
   background-color: #2196f3;
   color: white;
@@ -60,7 +56,6 @@ body.dark {
   transition: all 0.25s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-
 .action-btn:hover {
   background-color: #1976d2;
   transform: scale(1.04);
@@ -72,7 +67,7 @@ body.dark {
   margin-top: 8px;
 }
 
-/* 📅 MONTH/YEAR HEADER BAR */
+/* 📅 Calendar Header */
 .calendar-header {
   display: flex;
   justify-content: space-between;
@@ -85,12 +80,10 @@ body.dark {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(5px);
 }
-
 body.dark .calendar-header {
   background: #2c2c3e;
   color: #eee;
 }
-
 .calendar-header button {
   font-size: 1.5rem;
   background: none;
@@ -98,12 +91,11 @@ body.dark .calendar-header {
   cursor: pointer;
   color: #4a90e2;
 }
-
 body.dark .calendar-header button {
   color: #90caf9;
 }
 
-/* 📆 CALENDAR GRID */
+/* 🗓️ Calendar Grid */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -114,12 +106,10 @@ body.dark .calendar-header button {
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
-
 body.dark .calendar-grid {
   background-color: #1f1f2f;
 }
 
-/* 📅 WEEKDAY HEADER CELLS */
 .day-name {
   background: #f4f6f9;
   text-align: center;
@@ -128,13 +118,12 @@ body.dark .calendar-grid {
   color: #6b6b6b;
   border-bottom: 1px solid #e0e0e0;
 }
-
 body.dark .day-name {
   background: #333;
   color: #eee;
 }
 
-/* 🗓️ DAY CELLS */
+/* 📆 Day Cell */
 .day-cell {
   padding: 12px;
   min-height: 120px;
@@ -143,63 +132,53 @@ body.dark .day-name {
   background: #ffffff;
   transition: background 0.3s ease;
 }
-
 .day-cell:hover {
   background: #f9f9f9;
 }
-
 .day-cell.today {
   border-left: 4px solid #4a90e2;
   background: #e3f2fd;
 }
-
 body.dark .day-cell {
   background: #2a2a3a;
   border-color: #333;
 }
-
 body.dark .day-cell.today {
   background: #283593;
   border-left: 4px solid #64b5f6;
 }
-
 .day-cell.empty {
   background: #f9f9f9;
   border-right: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
-
 body.dark .day-cell.empty {
   background: #1b1b28;
   border-color: #333;
 }
 
-/* ☀️ WEEKEND + HOLIDAY HIGHLIGHTING */
+/* ☀️ Weekend + 🎉 Holiday */
 .day-cell.weekend {
   background-color: #f5f5f5;
 }
-
 .day-cell.holiday {
   background-color: #fff2f2;
   border: 1px solid #fbcaca;
 }
 
-/* 🔢 DAY NUMBER + EVENT COUNT BADGE */
+/* 📍 Day Header (Number + Badge) */
 .day-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .day-number {
   font-weight: bold;
   color: #333;
 }
-
 body.dark .day-number {
   color: #fff;
 }
-
 .event-count {
   background-color: #2196f3;
   color: white;
@@ -208,7 +187,7 @@ body.dark .day-number {
   border-radius: 10px;
 }
 
-/* 🏷️ EVENT TAGS */
+/* 🏷️ Event Tag */
 .event {
   font-size: 0.8rem;
   background-color: var(--color, #9c27b0);
@@ -223,8 +202,6 @@ body.dark .day-number {
   max-width: 100%;
   cursor: pointer;
 }
-
-/* ✅ COMPLETED EVENT STYLES */
 .event.completed {
   text-decoration: line-through !important;
   opacity: 0.5;
@@ -232,17 +209,15 @@ body.dark .day-number {
   background-color: #ddd !important;
   color: #555 !important;
 }
-
 body.dark .event {
   opacity: 0.95;
 }
 
-/* 💬 EVENT TOOLTIP */
+/* 🛠 Tooltip */
 .tooltip {
   position: relative;
   display: inline-block;
 }
-
 .tooltip .tooltip-text {
   visibility: hidden;
   position: absolute;
@@ -257,12 +232,11 @@ body.dark .event {
   white-space: nowrap;
   z-index: 10;
 }
-
 .tooltip:hover .tooltip-text {
   visibility: visible;
 }
 
-/* 🔔 REMINDER ALERT BOX */
+/* 🔔 Alert Box */
 .alert-box {
   position: fixed;
   top: 10px;
@@ -277,7 +251,7 @@ body.dark .event {
   font-weight: bold;
 }
 
-/* 🧾 MODAL STYLING */
+/* 📦 Modal */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -288,7 +262,6 @@ body.dark .event {
   justify-content: center;
   z-index: 10;
 }
-
 .modal {
   background: #ffffffdd;
   padding: 2rem;
@@ -300,11 +273,9 @@ body.dark .event {
   animation: fade-in 0.3s ease forwards;
   color: inherit;
 }
-
 body.dark .modal {
   background: #2c2c3e;
 }
-
 .modal button {
   padding: 8px 16px;
   margin: 10px 5px 0;
@@ -314,12 +285,11 @@ body.dark .modal {
   border-radius: 6px;
   cursor: pointer;
 }
-
 .modal button:hover {
   background-color: #357ab8;
 }
 
-/* 🎬 FADE IN ANIMATION FOR MODAL */
+/* 🎬 Modal animation */
 @keyframes fade-in {
   from {
     transform: scale(0.9);
@@ -331,7 +301,7 @@ body.dark .modal {
   }
 }
 
-/* 📱 RESPONSIVE ACTION BUTTON LAYOUT */
+/* 📱 Responsive */
 .calendar-actions-vertical {
   display: flex;
   flex-direction: row;
@@ -348,3 +318,5 @@ body.dark .modal {
     gap: 10px;
   }
 }
+
+ 

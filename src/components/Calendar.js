@@ -1,58 +1,43 @@
 import React, { useState, useEffect } from "react";
-import dayjs from "dayjs"; // Lightweight date library
-import CalendarHeader from "./CalendarHeader"; // Component for Month/Year navigation
-import DayCell from "./DayCell"; // Component representing each day box
-import "../styles/calendar.css"; // Styling
+import dayjs from "dayjs";
+import CalendarHeader from "./CalendarHeader";
+import DayCell from "./DayCell";
+import "../styles/calendar.css";
 
 function Calendar() {
-  // State for current visible date (month/week)
   const [date, setDate] = useState(dayjs());
-
-  // Stores all events (static + dynamic)
   const [events, setEvents] = useState([]);
-
-  // Used to track currently selected event
   const [selectedEvent, setSelectedEvent] = useState(null);
-
-  // If true, user is editing; else, adding
   const [editMode, setEditMode] = useState(false);
-
-  // Modal visibility toggle
   const [showModal, setShowModal] = useState(false);
-
-  // Display alert message (reminder popup)
   const [alertMessage, setAlertMessage] = useState("");
-
-  // Toggle between monthly and weekly view
   const [view, setView] = useState("month");
-
-  // Current time for comparison
   const now = dayjs();
 
-  // Event model for form
   const [newEvent, setNewEvent] = useState({
     title: "",
     date: dayjs().format("YYYY-MM-DD"),
     time: "",
     duration: "",
     color: "#4caf50",
-    repeat: "" // "weekly" or ""
+    repeat: ""
   });
 
-  // Ask for notification permission on first load
+  // Request notification permission on load
   useEffect(() => {
     if (Notification.permission !== "granted") {
       Notification.requestPermission();
     }
   }, []);
 
-  // Load events from localStorage and public/events.json
+  // Load static and dynamic events
   useEffect(() => {
     const loadEvents = async () => {
       const stored = JSON.parse(localStorage.getItem("calendarEvents") || "[]");
 
       try {
-        const res = await fetch("/events.json");
+        // ✅ Correct fetch path for GitHub Pages
+        const res = await fetch(process.env.PUBLIC_URL + "/events.json");
         const staticEventsRaw = await res.json();
         const staticEvents = staticEventsRaw.map(ev => ({ ...ev, static: true }));
         setEvents([...staticEvents, ...stored]);
@@ -65,20 +50,19 @@ function Calendar() {
     loadEvents();
   }, []);
 
-  // Save only dynamic events (user-added) to localStorage
+  // Save only dynamic events
   useEffect(() => {
     const dynamicOnly = events.filter(e => !e.static);
     localStorage.setItem("calendarEvents", JSON.stringify(dynamicOnly));
   }, [events]);
 
-  // Schedule in-browser notifications before event time
+  // In-browser reminders
   useEffect(() => {
-    const notified = new Set(); // Prevent duplicate alerts
+    const notified = new Set();
+    const now = dayjs();
 
     const schedule = () => {
       if (Notification.permission !== "granted") return;
-
-      const now = dayjs();
 
       events.forEach(event => {
         const eventTime = dayjs(`${event.date}T${event.time}`);
@@ -90,7 +74,7 @@ function Calendar() {
 
           setTimeout(() => {
             setAlertMessage(`⏰ Reminder: ${event.title} at ${event.time}`);
-            setTimeout(() => setAlertMessage(""), 5000); // clear message
+            setTimeout(() => setAlertMessage(""), 5000);
 
             new Notification(`⏰ Reminder: ${event.title}`, {
               body: `${event.time} (${event.duration || "event"})`,
@@ -104,14 +88,10 @@ function Calendar() {
     schedule();
   }, [events]);
 
-  // Toggle between month and week view
   const toggleView = () => setView(view === "month" ? "week" : "month");
-
-  // Navigation functions
   const changeMonth = (offset) => setDate(prev => prev.add(offset, "month"));
   const changeWeek = (offset) => setDate(prev => prev.add(offset, "week"));
 
-  // Open modal in add mode
   const handleAddClick = () => {
     setEditMode(false);
     setShowModal(true);
@@ -125,7 +105,6 @@ function Calendar() {
     });
   };
 
-  // Open modal in edit mode
   const handleEventClick = (event) => {
     setSelectedEvent(event);
     setEditMode(true);
@@ -133,14 +112,12 @@ function Calendar() {
     setNewEvent({ ...event });
   };
 
-  // Add a new event
   const handleAddEvent = () => {
     if (!newEvent.title || !newEvent.date || !newEvent.time) return;
     setEvents([...events, newEvent]);
     resetModal();
   };
 
-  // Update an existing event
   const handleUpdateEvent = () => {
     if (!selectedEvent) return;
     setEvents(prev =>
@@ -155,7 +132,6 @@ function Calendar() {
     resetModal();
   };
 
-  // Delete an event
   const handleDeleteEvent = () => {
     if (!selectedEvent) return;
     setEvents(events.filter(e =>
@@ -166,14 +142,12 @@ function Calendar() {
     resetModal();
   };
 
-  // Reset modal states
   const resetModal = () => {
     setShowModal(false);
     setEditMode(false);
     setSelectedEvent(null);
   };
 
-  // Drag-and-drop handler to move an event to another day
   const handleDropEvent = (eventData, newDate) => {
     const updatedEvent = { ...eventData, date: newDate };
     setEvents(events.map(e =>
@@ -183,7 +157,6 @@ function Calendar() {
     ));
   };
 
-  // Get events for the day (including recurring ones)
   const eventsForDay = (day) =>
     events
       .filter(e => {
@@ -198,7 +171,6 @@ function Calendar() {
         completed: now.isAfter(dayjs(`${day.format("YYYY-MM-DD")}T${e.time}`))
       }));
 
-  // Generate grid days (month or week)
   const days = [];
   if (view === "month") {
     for (let i = 0; i < date.startOf("month").day(); i++) days.push(null);
@@ -212,7 +184,7 @@ function Calendar() {
 
   return (
     <>
-      {/* 🔝 Top header with title and controls */}
+      {/* Top Section */}
       <div className="calendar-header-top">
         <div className="calendar-header-line">
           <h1 className="calendar-title">
@@ -238,10 +210,10 @@ function Calendar() {
         <p className="view-label">{view === "month" ? "Monthly View" : "Weekly View"}</p>
       </div>
 
-      {/* 🔔 Top alert popup */}
+      {/* In-browser Reminder Box */}
       {alertMessage && <div className="alert-box">{alertMessage}</div>}
 
-      {/* ⬅️➡️ Calendar month/week navigation */}
+      {/* Calendar Header */}
       <CalendarHeader
         month={date.format("MMMM")}
         year={date.year()}
@@ -249,7 +221,7 @@ function Calendar() {
         onNext={() => view === "month" ? changeMonth(1) : changeWeek(1)}
       />
 
-      {/* 📅 Day Grid */}
+      {/* Grid View */}
       <div className="calendar-grid">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(d => (
           <div className="day-name" key={d}>{d}</div>
@@ -266,7 +238,7 @@ function Calendar() {
         ))}
       </div>
 
-      {/* 🧾 Modal for event input */}
+      {/* Modal for Add/Update/Delete */}
       {showModal && (
         <div className="modal-overlay" onClick={resetModal}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
